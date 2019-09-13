@@ -8,6 +8,6 @@ Current algorithms:
    
 To run the code:
 1. run main.py
-2. To test kmeans clustering, change the algo to `clusters = sent_clus.kmeas_clustering(sents, nclusters)`
-3. To test affinity clustering, change the algo to `clusters = sent_clus.kmeas_clustering(sents, nclusters)`
+2. To test kmeans clustering, change the algo to `clusters = sent_clus.kmeas_clustering(sents, nclusters)` in main.py
+3. To test affinity clustering, change the algo to `clusters = sent_clus.kmeas_clustering(sents, nclusters)` in main.py
 
