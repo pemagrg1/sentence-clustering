@@ -8,6 +8,8 @@ sents = nltk.sent_tokenize(text)
 nclusters= 2
 sent_clus = SentenceClustering(sents=sents, nclusters=nclusters)
 clusters = sent_clus.Agglomerative_clustering()
+# clusters = sent_clus.kmeas_clustering()
+# clusters = sent_clus.affinity_clustering()
 print (clusters)
 for cluster in range(nclusters):
         print ("cluster ",cluster,":")
