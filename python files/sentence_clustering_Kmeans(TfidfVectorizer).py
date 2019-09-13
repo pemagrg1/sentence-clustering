@@ -35,6 +35,6 @@ if __name__ == "__main__":
         nclusters= 2
         clusters = cluster_sentences(sents, nclusters)
         for cluster in range(nclusters):
-                print "cluster ",cluster,":"
+                print ("cluster ",cluster,":")
                 for i,sentence in enumerate(clusters[cluster]):
-                        print "\tsentence ",i,": ",sents[sentence]
+                        print ("\tsentence ",i,": ",sents[sentence])
