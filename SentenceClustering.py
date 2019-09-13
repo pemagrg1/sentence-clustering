@@ -4,8 +4,8 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
-from pprint import pprint
-import nltk
+from sklearn.cluster import AffinityPropagation
+
 
 
 class SentenceClustering:
@@ -20,7 +20,7 @@ class SentenceClustering:
                       t not in stopwords.words('english')]
             return tokens
 
-    def cluster_sentences(self,sentences, nb_of_clusters=5):
+    def kmeas_clustering(self,sentences, nb_of_clusters=5):
         tfidf_vectorizer = TfidfVectorizer(tokenizer=self.word_tokenizer,
                                            stop_words=stopwords.words(
                                                'english'),
@@ -32,6 +32,23 @@ class SentenceClustering:
         kmeans.fit(tfidf_matrix)
         clusters = collections.defaultdict(list)
         for i, label in enumerate(kmeans.labels_):
+            clusters[label].append(i)
+        return dict(clusters)
+
+    def affinity_clustering(self,sentences, nb_of_clusters=5):
+        tfidf_vectorizer = TfidfVectorizer(tokenizer=self.word_tokenizer,
+                                           stop_words=stopwords.words(
+                                               'english'),
+                                           max_df=0.9,
+                                           min_df=0.1,
+                                           lowercase=True)
+        tf_idf_matrix = tfidf_vectorizer.fit_transform(sentences)
+        similarity_matrix = (tf_idf_matrix * tf_idf_matrix.T).A
+        affinity_propagation = AffinityPropagation(affinity="precomputed",
+                                                   damping=0.5)
+        affinity_propagation.fit(similarity_matrix)
+        clusters = collections.defaultdict(list)
+        for i, label in enumerate(affinity_propagation.labels_):
             clusters[label].append(i)
         return dict(clusters)
 
