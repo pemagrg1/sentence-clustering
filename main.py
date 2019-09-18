@@ -1,6 +1,6 @@
 import nltk
 from SentenceClustering import SentenceClustering
-
+import pandas as pd
 
 
 text = """
@@ -8,12 +8,20 @@ text = """
         """
 sents = nltk.sent_tokenize(text)
 nclusters= 5
-sent_clus = SentenceClustering(sents=sents, nclusters=nclusters)
+sent_clus = SentenceClustering(sents=sents, nclusters=nclusters, visualization=True)
 # clusters = sent_clus.Agglomerative_clustering()
 clusters = sent_clus.kmeans_clustering()
 # clusters = sent_clus.affinity_clustering()
-print (clusters)
+df = pd.DataFrame(columns=['sentence','label'])
+
 for cluster in range(nclusters):
         print ("cluster ",cluster,":")
         for i,sentence in enumerate(clusters[cluster]):
                 print ("\tsentence ",i,": ",sents[sentence])
+                df = df.append({'sentence': sents[sentence], 'label': cluster},
+                               ignore_index=True)
+print(df.head())
+
+# from cluster_visualization import ClusterVisualization
+# clus_viz = ClusterVisualization(df=df,nclusters=nclusters)
+# clus_viz.cluster_visualization()
