@@ -6,6 +6,7 @@ class ClusterVisualization:
         self.tfidf_matrix = tfidf_matrix
 
     def cluster_visualization_tsne(self):
+        print("===============")
         tsne_perplexity = 20.0
         tsne_early_exaggeration = 4.0
         tsne_learning_rate = 1000
@@ -16,7 +17,7 @@ class ClusterVisualization:
                      learning_rate=tsne_learning_rate,
                      )
 
-        transformed_centroids = model.fit_transform(self.tfidf_matrix.toarray())
+        transformed_centroids = model.fit_transform(self.tfidf_matrix)
         plt.scatter(transformed_centroids[:, 0], transformed_centroids[:, 1],
                     c="g")
         plt.show()

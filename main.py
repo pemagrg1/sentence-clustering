@@ -13,12 +13,13 @@ clusters = sent_clus.kmeans_clustering()
 
 """
 Other alog you can try:
+        clusters = sent_clus.kmeans_clustering()
         clusters = sent_clus.Agglomerative_clustering()
         clusters = sent_clus.affinity_clustering()
 """
 
 df = pd.DataFrame(columns=['sentence','label'])
-for cluster in range(nclusters):
+for cluster in range(len(clusters.keys())):
         print ("cluster ",cluster,":")
         for i,sentence in enumerate(clusters[cluster]):
                 print ("\tsentence ",i,": ",sents[sentence])
