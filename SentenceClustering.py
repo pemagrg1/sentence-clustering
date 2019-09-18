@@ -15,11 +15,7 @@ class SentenceClustering:
         self.nclusters = nclusters
 
     def kmeans_clustering(self):
-        tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords.words(
-            'english'),
-            max_df=0.9,
-            min_df=0.1,
-            lowercase=True)
+        tfidf_vectorizer = TfidfVectorizer()
         tfidf_matrix = tfidf_vectorizer.fit_transform(self.sents)
         kmeans = KMeans(n_clusters=self.nclusters)
         kmeans.fit(tfidf_matrix)
@@ -29,11 +25,7 @@ class SentenceClustering:
         return dict(clusters)
 
     def affinity_clustering(self):
-        tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords.words(
-                                               'english'),
-                                           max_df=0.9,
-                                           min_df=0.1,
-                                           lowercase=True)
+        tfidf_vectorizer = TfidfVectorizer()
         tf_idf_matrix = tfidf_vectorizer.fit_transform(self.sents)
         similarity_matrix = (tf_idf_matrix * tf_idf_matrix.T).A
         affinity_propagation = AffinityPropagation(affinity="precomputed",
