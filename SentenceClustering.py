@@ -37,11 +37,7 @@ class SentenceClustering:
         return dict(clusters)
 
     def Agglomerative_clustering(self):
-        tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords.words(
-            'english'),
-            max_df=0.9,
-            min_df=0.1,
-            lowercase=True)
+        tfidf_vectorizer = TfidfVectorizer()
         tf_idf_matrix = tfidf_vectorizer.fit_transform(self.sents)
         similarity_matrix = (tf_idf_matrix * tf_idf_matrix.T).A
         agglomerativeclustering = AgglomerativeClustering()
