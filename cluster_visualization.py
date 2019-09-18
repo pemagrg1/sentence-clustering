@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 
 class ClusterVisualization:
-    def __init__(self,tfidf_matrix):
+    def __init__(self,tfidf_matrix,alog_name):
         self.tfidf_matrix = tfidf_matrix
+        self.alog_name = alog_name
 
     def cluster_visualization_tsne(self):
         print("===============")
@@ -20,4 +21,5 @@ class ClusterVisualization:
         transformed_centroids = model.fit_transform(self.tfidf_matrix)
         plt.scatter(transformed_centroids[:, 0], transformed_centroids[:, 1],
                     c="g")
+        plt.savefig("plot_result/"+self.alog_name+'.jpg')
         plt.show()

@@ -17,7 +17,7 @@ class SentenceClustering:
         kmeans = KMeans(n_clusters=self.nclusters)
         kmeans.fit(tfidf_matrix)
 
-        clus_viz = ClusterVisualization(tfidf_matrix.toarray())
+        clus_viz = ClusterVisualization(tfidf_matrix.toarray(),alog_name="kmeans")
         clus_viz.cluster_visualization_tsne()
 
         clusters = collections.defaultdict(list)
@@ -33,7 +33,7 @@ class SentenceClustering:
                                                    damping=0.5)
         affinity_propagation.fit(similarity_matrix)
 
-        clus_viz = ClusterVisualization(tfidf_matrix=similarity_matrix)
+        clus_viz = ClusterVisualization(tfidf_matrix=similarity_matrix,alog_name="affinity")
         clus_viz.cluster_visualization_tsne()
 
         clusters = collections.defaultdict(list)
@@ -49,7 +49,7 @@ class SentenceClustering:
         agglomerativeclustering.fit(similarity_matrix)
 
         clus_viz = ClusterVisualization(
-            tfidf_matrix=similarity_matrix)
+            tfidf_matrix=similarity_matrix,alog_name="Agglomerative")
         clus_viz.cluster_visualization_tsne()
 
         clusters = collections.defaultdict(list)
