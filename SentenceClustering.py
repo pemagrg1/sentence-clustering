@@ -14,7 +14,7 @@ class SentenceClustering:
         self.sents = sents
         self.nclusters = nclusters
 
-    def kmeas_clustering(self):
+    def kmeans_clustering(self):
         tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords.words(
             'english'),
             max_df=0.9,
