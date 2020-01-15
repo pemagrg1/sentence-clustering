@@ -21,5 +21,5 @@ class ClusterVisualization:
         transformed_centroids = model.fit_transform(self.tfidf_matrix)
         plt.scatter(transformed_centroids[:, 0], transformed_centroids[:, 1],
                     c="g")
-        plt.savefig("plot_result/"+self.alog_name+'.jpg')
+        plt.savefig("plot_result/"+self.alog_name+'.png')
         plt.show()
